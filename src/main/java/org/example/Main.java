@@ -16,33 +16,36 @@ import java.net.URL;
 
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
-        URL cars = new URL("https://laptop-sloaj3ib:8181/WebLess4-SOAP-1.0-SNAPSHOT/CarsDAOService?wsdl");
-//        URL clients = new URL();
+        URL cars = new URL("http://laptop-sloaj3ib:8080/WebLess4-SOAP-1.0-SNAPSHOT/CarsDAOService?wsdl");
+        URL clients = new URL("http://LAPTOP-SLOAJ3IB:8080/WebLess4-SOAP-1.0-SNAPSHOT/ClientsDAOService?wsdl");
 //        URL marks = new URL();
 //        URL orders = new URL();
 
         QName qCars = new QName("http://DAO/", "CarsDAOService");
-//        QName qClients = new QName();
+        QName qClients = new QName("http://DAO/","ClientsDAOService");
 //        QName qMarks = new QName();
 //        QName qOrders = new QName();
 
-        QName pCars = new QName("CarsDAOPort", "tns:CarsDAOPortBinding");
-//        QName pClients = new QName();
+        QName pCars = new QName("http://DAO/", "CarsDAOPort");
+        QName pClients = new QName("http://DAO/","ClientsDAOPort");
 //        QName pMarks = new QName();
 //        QName pOrders = new QName();
 
         Service servCars = Service.create(cars, qCars);
-//        Service servClients = Service.create(clients, qClients);
+        Service servClients = Service.create(clients, qClients);
 //        Service servMarks = Service.create(marks, qMarks);
 //        Service servOrders = Service.create(orders, qOrders);
 
+
         ICarsDAO carsDAO = servCars.getPort(pCars, ICarsDAO.class);
-//        IClientsDAO clientsDAO = servClients.getPort(pClients, IClientsDAO.class);
+        IClientsDAO clientsDAO = servClients.getPort(pClients, IClientsDAO.class);
 //        IMarksDAO marksDAO = servMarks.getPort(pMarks, IMarksDAO.class);
 //        IOrdersDAO ordersDAO = servOrders.getPort(pOrders, IOrdersDAO.class);
 
-        carsDAO.getAll();
-//        clientsDAO.getAll();
+        System.out.println("Finish");
+
+//        System.out.println(carsDAO.getAll());
+        System.out.println(clientsDAO.getAll());
 //        marksDAO.getAll();
 //        ordersDAO.getAll();
 
