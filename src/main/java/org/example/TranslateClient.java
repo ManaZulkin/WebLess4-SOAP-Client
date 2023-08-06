@@ -15,7 +15,7 @@ public class TranslateClient {
         Service service = Service.create(url, qName);
         ITranslate translate = service.getPort(port, ITranslate.class);
 
-        System.out.println(translate.translate("food"));
+        System.out.println(translate.translate("age"));
 
     }
 }
